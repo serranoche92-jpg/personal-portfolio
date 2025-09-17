@@ -1,0 +1,1682 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>AS S. SAN PASCUAL - Chibi Developer Portfolio</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <style>
+        @import url('https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700;800;900&family=Fredoka:wght@300;400;500;600;700&display=swap');
+        
+        * {
+            font-family: 'Poppins', sans-serif;
+        }
+        
+        .kawaii-font {
+            font-family: 'Fredoka', cursive;
+        }
+        
+        .text-shadow {
+            text-shadow: 2px 2px 4px rgba(0,0,0,0.1);
+        }
+        
+        .text-glow {
+            text-shadow: 0 0 10px rgba(147, 51, 234, 0.3), 0 0 20px rgba(147, 51, 234, 0.2);
+        }
+        
+        .text-gradient-pink {
+            background: linear-gradient(135deg, #ff6b9d, #c44569, #f8b500);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+        }
+        
+        .text-gradient-purple {
+            background: linear-gradient(135deg, #667eea, #764ba2, #f093fb);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+        }
+        
+        .text-gradient-rainbow {
+            background: linear-gradient(135deg, #ff6b9d, #c44569, #f8b500, #4ecdc4, #45b7d1, #96ceb4, #ffeaa7);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+            animation: rainbow-shift 3s ease-in-out infinite;
+        }
+        
+        @keyframes rainbow-shift {
+            0%, 100% { filter: hue-rotate(0deg); }
+            50% { filter: hue-rotate(180deg); }
+        }
+        
+        .text-bounce {
+            animation: text-bounce 2s ease-in-out infinite;
+        }
+        
+        @keyframes text-bounce {
+            0%, 20%, 50%, 80%, 100% { transform: translateY(0); }
+            40% { transform: translateY(-5px); }
+            60% { transform: translateY(-3px); }
+        }
+        
+        .text-wiggle {
+            animation: text-wiggle 2.5s ease-in-out infinite;
+        }
+        
+        @keyframes text-wiggle {
+            0%, 100% { transform: rotate(0deg); }
+            25% { transform: rotate(1deg); }
+            75% { transform: rotate(-1deg); }
+        }
+        
+        .chibi-bounce {
+            animation: bounce 2s infinite;
+        }
+        
+        @keyframes bounce {
+            0%, 20%, 50%, 80%, 100% { transform: translateY(0); }
+            40% { transform: translateY(-10px); }
+            60% { transform: translateY(-5px); }
+        }
+        
+        .float-animation {
+            animation: float 3s ease-in-out infinite;
+        }
+        
+        @keyframes float {
+            0%, 100% { transform: translateY(0px); }
+            50% { transform: translateY(-10px); }
+        }
+        
+        .gradient-bg {
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+        }
+        
+        .card-hover {
+            transition: all 0.3s ease;
+        }
+        
+        .card-hover:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 20px 40px rgba(0,0,0,0.1);
+        }
+        
+        .skill-bar {
+            transition: width 2s ease-in-out;
+        }
+        
+        .typing-animation {
+            border-right: 2px solid #667eea;
+            animation: typing 3.5s steps(40, end), blink-caret 0.75s step-end infinite;
+            white-space: nowrap;
+            overflow: hidden;
+        }
+        
+        @keyframes typing {
+            from { width: 0; }
+            to { width: 100%; }
+        }
+        
+        @keyframes blink-caret {
+            from, to { border-color: transparent; }
+            50% { border-color: #667eea; }
+        }
+        
+        .modal {
+            display: none;
+            position: fixed;
+            z-index: 1000;
+            left: 0;
+            top: 0;
+            width: 100%;
+            height: 100%;
+            background-color: rgba(0,0,0,0.5);
+        }
+        
+        .modal.show {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+        
+        .theme-toggle {
+            transition: all 0.3s ease;
+        }
+        
+        .dark-mode {
+            background-color: #1a1a2e;
+            color: #eee;
+        }
+        
+        .dark-mode .bg-white {
+            background-color: #16213e !important;
+        }
+        
+        .dark-mode .text-gray-800 {
+            color: #eee !important;
+        }
+        
+        .dark-mode .text-gray-600 {
+            color: #ccc !important;
+        }
+        
+        .click-effect {
+            position: relative;
+            overflow: hidden;
+        }
+        
+        .click-effect::before {
+            content: '';
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            width: 0;
+            height: 0;
+            background: radial-gradient(circle, rgba(255,255,255,0.6) 0%, transparent 70%);
+            border-radius: 50%;
+            transform: translate(-50%, -50%);
+            transition: width 0.6s, height 0.6s;
+            pointer-events: none;
+            z-index: 1;
+        }
+        
+        .click-effect.clicked::before {
+            width: 300px;
+            height: 300px;
+        }
+        
+        .sparkle-animation {
+            animation: sparkle 1.5s ease-out;
+        }
+        
+        @keyframes sparkle {
+            0% { transform: scale(0) rotate(0deg); opacity: 1; }
+            50% { transform: scale(1) rotate(180deg); opacity: 0.8; }
+            100% { transform: scale(0) rotate(360deg); opacity: 0; }
+        }
+        
+        .pulse-glow {
+            animation: pulseGlow 0.8s ease-out;
+        }
+        
+        @keyframes pulseGlow {
+            0% { box-shadow: 0 0 0 0 rgba(147, 51, 234, 0.7); }
+            70% { box-shadow: 0 0 0 20px rgba(147, 51, 234, 0); }
+            100% { box-shadow: 0 0 0 0 rgba(147, 51, 234, 0); }
+        }
+        
+        .shake-animation {
+            animation: shake 0.6s ease-in-out;
+        }
+        
+        @keyframes shake {
+            0%, 100% { transform: translateX(0); }
+            10%, 30%, 50%, 70%, 90% { transform: translateX(-5px); }
+            20%, 40%, 60%, 80% { transform: translateX(5px); }
+        }
+        
+        .profile-upload {
+            position: relative;
+            cursor: pointer;
+            transition: all 0.3s ease;
+        }
+        
+        .profile-upload:hover {
+            transform: scale(1.05);
+        }
+        
+        .upload-overlay {
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            background: rgba(0,0,0,0.7);
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            opacity: 0;
+            transition: opacity 0.3s ease;
+            color: white;
+            font-size: 14px;
+            text-align: center;
+        }
+        
+        .profile-upload:hover .upload-overlay {
+            opacity: 1;
+        }
+        
+        .loading-overlay {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: rgba(147, 51, 234, 0.95);
+            display: none;
+            align-items: center;
+            justify-content: center;
+            z-index: 9999;
+            backdrop-filter: blur(10px);
+        }
+        
+        .loading-overlay.show {
+            display: flex;
+        }
+        
+        .loading-content {
+            text-align: center;
+            color: white;
+        }
+        
+        .loading-spinner {
+            width: 80px;
+            height: 80px;
+            margin: 0 auto 20px;
+            position: relative;
+        }
+        
+        .spinner-ring {
+            width: 100%;
+            height: 100%;
+            border: 4px solid rgba(255, 255, 255, 0.3);
+            border-top: 4px solid white;
+            border-radius: 50%;
+            animation: spin 1s linear infinite;
+        }
+        
+        @keyframes spin {
+            0% { transform: rotate(0deg); }
+            100% { transform: rotate(360deg); }
+        }
+        
+        .loading-dots {
+            display: flex;
+            justify-content: center;
+            gap: 8px;
+            margin-top: 20px;
+        }
+        
+        .loading-dot {
+            width: 12px;
+            height: 12px;
+            background: white;
+            border-radius: 50%;
+            animation: bounce-dot 1.4s ease-in-out infinite both;
+        }
+        
+        .loading-dot:nth-child(1) { animation-delay: -0.32s; }
+        .loading-dot:nth-child(2) { animation-delay: -0.16s; }
+        .loading-dot:nth-child(3) { animation-delay: 0s; }
+        
+        @keyframes bounce-dot {
+            0%, 80%, 100% { 
+                transform: scale(0);
+                opacity: 0.5;
+            } 
+            40% { 
+                transform: scale(1);
+                opacity: 1;
+            }
+        }
+        
+        .loading-kawaii {
+            font-size: 40px;
+            animation: kawaii-bounce 0.8s ease-in-out infinite alternate;
+        }
+        
+        @keyframes kawaii-bounce {
+            0% { transform: translateY(0px) scale(1); }
+            100% { transform: translateY(-10px) scale(1.1); }
+        }
+        
+        .loading-text {
+            font-size: 24px;
+            font-weight: bold;
+            margin-bottom: 10px;
+            animation: pulse-text 2s ease-in-out infinite;
+        }
+        
+        @keyframes pulse-text {
+            0%, 100% { opacity: 1; }
+            50% { opacity: 0.7; }
+        }
+        
+        .loading-subtitle {
+            font-size: 16px;
+            opacity: 0.9;
+            animation: fade-in-out 3s ease-in-out infinite;
+        }
+        
+        @keyframes fade-in-out {
+            0%, 100% { opacity: 0.5; }
+            50% { opacity: 1; }
+        }
+        
+        .animated-background {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            pointer-events: none;
+            z-index: -1;
+            overflow: hidden;
+        }
+        
+        .cute-element {
+            position: absolute;
+            font-size: 30px;
+            opacity: 0;
+            pointer-events: none;
+            animation: cutePopAnimation 4s ease-in-out;
+        }
+        
+        @keyframes cutePopAnimation {
+            0% {
+                opacity: 0;
+                transform: scale(0) rotate(0deg) translateY(20px);
+            }
+            15% {
+                opacity: 1;
+                transform: scale(1.2) rotate(10deg) translateY(0px);
+            }
+            30% {
+                opacity: 0.9;
+                transform: scale(1) rotate(-5deg) translateY(-10px);
+            }
+            50% {
+                opacity: 0.8;
+                transform: scale(1.1) rotate(5deg) translateY(-15px);
+            }
+            70% {
+                opacity: 0.6;
+                transform: scale(0.9) rotate(-3deg) translateY(-20px);
+            }
+            85% {
+                opacity: 0.3;
+                transform: scale(0.7) rotate(2deg) translateY(-25px);
+            }
+            100% {
+                opacity: 0;
+                transform: scale(0) rotate(0deg) translateY(-30px);
+            }
+        }
+        
+        .cute-element.bounce-style {
+            animation: cuteBounceAnimation 3.5s ease-in-out;
+        }
+        
+        @keyframes cuteBounceAnimation {
+            0% {
+                opacity: 0;
+                transform: scale(0) translateY(50px);
+            }
+            20% {
+                opacity: 1;
+                transform: scale(1.3) translateY(-10px);
+            }
+            40% {
+                opacity: 0.9;
+                transform: scale(0.9) translateY(5px);
+            }
+            60% {
+                opacity: 0.8;
+                transform: scale(1.1) translateY(-5px);
+            }
+            80% {
+                opacity: 0.4;
+                transform: scale(0.8) translateY(0px);
+            }
+            100% {
+                opacity: 0;
+                transform: scale(0) translateY(-20px);
+            }
+        }
+        
+        .cute-element.float-style {
+            animation: cuteFloatAnimation 5s ease-in-out;
+        }
+        
+        @keyframes cuteFloatAnimation {
+            0% {
+                opacity: 0;
+                transform: scale(0) translateX(-20px);
+            }
+            10% {
+                opacity: 1;
+                transform: scale(1) translateX(0px);
+            }
+            25% {
+                opacity: 0.9;
+                transform: scale(1.1) translateX(10px) translateY(-5px);
+            }
+            50% {
+                opacity: 0.8;
+                transform: scale(1) translateX(20px) translateY(-10px);
+            }
+            75% {
+                opacity: 0.5;
+                transform: scale(0.9) translateX(30px) translateY(-15px);
+            }
+            90% {
+                opacity: 0.2;
+                transform: scale(0.7) translateX(40px) translateY(-20px);
+            }
+            100% {
+                opacity: 0;
+                transform: scale(0) translateX(50px) translateY(-25px);
+            }
+        }
+        
+        .cute-element.heart-pulse {
+            animation: heartPulseAnimation 3s ease-in-out;
+        }
+        
+        @keyframes heartPulseAnimation {
+            0% {
+                opacity: 0;
+                transform: scale(0);
+            }
+            15% {
+                opacity: 1;
+                transform: scale(1.4);
+            }
+            30% {
+                opacity: 0.9;
+                transform: scale(1);
+            }
+            45% {
+                opacity: 0.8;
+                transform: scale(1.2);
+            }
+            60% {
+                opacity: 0.7;
+                transform: scale(1);
+            }
+            75% {
+                opacity: 0.4;
+                transform: scale(1.1);
+            }
+            90% {
+                opacity: 0.2;
+                transform: scale(0.8);
+            }
+            100% {
+                opacity: 0;
+                transform: scale(0);
+            }
+        }
+    </style>
+</head>
+<body class="bg-gradient-to-br from-pink-100 via-purple-50 to-indigo-100 min-h-screen transition-all duration-300">
+    <!-- Animated Background -->
+    <div class="animated-background" id="animatedBackground"></div>
+    <!-- Navigation -->
+    <nav class="fixed top-0 w-full bg-white/80 backdrop-blur-md shadow-lg z-50 transition-all duration-300">
+        <div class="container mx-auto px-6 py-4">
+            <div class="flex justify-between items-center">
+                <div class="flex items-center space-x-3">
+                    <div class="w-10 h-10 bg-gradient-to-r from-pink-400 to-purple-500 rounded-full flex items-center justify-center chibi-bounce">
+                        <span class="text-white font-bold text-lg">🌸</span>
+                    </div>
+                    <span class="kawaii-font text-xl font-bold text-gradient-pink">AS S. SAN PASCUAL</span>
+                </div>
+                <div class="hidden md:flex space-x-8">
+                    <a href="#home" class="nav-link text-gray-600 hover:text-purple-500 transition-colors font-medium">Home</a>
+                    <a href="#about" class="nav-link text-gray-600 hover:text-purple-500 transition-colors font-medium">About</a>
+                    <a href="#skills" class="nav-link text-gray-600 hover:text-purple-500 transition-colors font-medium">Skills</a>
+                    <a href="#projects" class="nav-link text-gray-600 hover:text-purple-500 transition-colors font-medium">Projects</a>
+                    <a href="#contact" class="nav-link text-gray-600 hover:text-purple-500 transition-colors font-medium">Contact</a>
+                </div>
+                <button id="theme-toggle" class="theme-toggle p-2 rounded-full bg-purple-100 hover:bg-purple-200">
+                    <span class="text-xl">🌙</span>
+                </button>
+            </div>
+        </div>
+    </nav>
+
+    <!-- Hero Section -->
+    <section id="home" class="pt-20 pb-16 px-6">
+        <div class="container mx-auto text-center">
+            <div class="mb-8 float-animation">
+                <div class="w-48 h-48 mx-auto mb-6 relative profile-upload" onclick="triggerFileUpload()">
+                    <img id="profileImage" src="" alt="Profile Picture" class="w-full h-full rounded-full object-cover border-4 border-purple-300 shadow-lg" style="display: none;">
+                    <svg id="defaultAvatar" viewBox="0 0 200 200" class="w-full h-full">
+                        <!-- Chibi character -->
+                        <circle cx="100" cy="80" r="45" fill="#ffd6cc" stroke="#ff9999" stroke-width="2"/>
+                        <!-- Hair -->
+                        <path d="M55 65 Q100 30 145 65 Q140 45 100 40 Q60 45 55 65" fill="#8b4513"/>
+                        <!-- Eyes -->
+                        <circle cx="85" cy="75" r="8" fill="#333"/>
+                        <circle cx="115" cy="75" r="8" fill="#333"/>
+                        <circle cx="87" cy="73" r="3" fill="#fff"/>
+                        <circle cx="117" cy="73" r="3" fill="#fff"/>
+                        <!-- Mouth -->
+                        <path d="M95 90 Q100 95 105 90" stroke="#ff6b6b" stroke-width="2" fill="none"/>
+                        <!-- Body -->
+                        <rect x="80" y="120" width="40" height="50" rx="20" fill="#667eea"/>
+                        <!-- Arms -->
+                        <circle cx="65" cy="140" r="12" fill="#ffd6cc"/>
+                        <circle cx="135" cy="140" r="12" fill="#ffd6cc"/>
+                        <!-- Cute hands -->
+                        <circle cx="65" cy="140" r="6" fill="#ffb3ba"/>
+                        <circle cx="135" cy="140" r="6" fill="#ffb3ba"/>
+                    </svg>
+                    <div class="upload-overlay">
+                        <div>
+                            <div class="text-2xl mb-1">📷</div>
+                            <div class="text-xs">Click to upload<br>your photo!</div>
+                        </div>
+                    </div>
+                </div>
+                <input type="file" id="fileInput" accept="image/*" style="display: none;" onchange="handleImageUpload(event)">
+            </div>
+            <h1 class="kawaii-font text-5xl md:text-7xl font-black mb-4 uppercase text-shadow">
+                <span class="text-gradient-rainbow text-bounce">HI! I'M</span> 
+                <span class="text-gradient-pink text-wiggle block mt-2">AS S. SAN PASCUAL</span>
+            </h1>
+            <div class="text-2xl md:text-4xl mb-8 h-12">
+                <span class="typing-animation inline-block font-bold uppercase kawaii-font text-gradient-purple text-glow">SOFTWARE ANALYST & DEVELOPER</span>
+            </div>
+            <p class="text-lg md:text-xl mb-8 max-w-2xl mx-auto font-medium kawaii-font text-shadow" style="color: #4a5568; line-height: 1.6;">
+                <span class="text-gradient-pink font-semibold">CRAFTING MAGICAL CODE EXPERIENCES</span> with a touch of kawaii! ✨<br>
+                Specializing in <span class="text-gradient-purple font-semibold">FULL-STACK DEVELOPMENT</span>, 
+                <span class="text-gradient-rainbow font-semibold">DATA ANALYSIS</span>, and creating 
+                <span class="text-gradient-pink font-semibold">USER-FRIENDLY SOLUTIONS</span> that make people smile! 🌈💖
+            </p>
+            <div class="flex flex-col sm:flex-row gap-4 justify-center">
+                <button onclick="handleViewWorkClick()" class="click-effect bg-gradient-to-r from-pink-500 to-purple-600 text-white px-8 py-3 rounded-full kawaii-font font-bold hover:shadow-lg transform hover:scale-105 transition-all duration-300 text-lg" id="viewWorkBtn">
+                    <span id="viewWorkText">View My Work ✨</span>
+                    <span id="viewWorkSpinner" class="hidden">
+                        <svg class="animate-spin -ml-1 mr-3 h-5 w-5 text-white inline" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24">
+                            <circle class="opacity-25" cx="12" cy="12" r="10" stroke="currentColor" stroke-width="4"></circle>
+                            <path class="opacity-75" fill="currentColor" d="M4 12a8 8 0 018-8V0C5.373 0 0 5.373 0 12h4zm2 5.291A7.962 7.962 0 014 12H0c0 3.042 1.135 5.824 3 7.938l3-2.647z"></path>
+                        </svg>
+                        Loading...
+                    </span>
+                </button>
+                <button onclick="scrollToSection('contact')" class="click-effect border-2 border-purple-500 text-purple-500 px-8 py-3 rounded-full kawaii-font font-bold hover:bg-purple-500 hover:text-white transition-all duration-300 text-lg">
+                    Let's Chat! 💬
+                </button>
+            </div>
+        </div>
+    </section>
+
+    <!-- About Section -->
+    <section id="about" class="py-16 px-6 bg-white/50">
+        <div class="container mx-auto">
+            <h2 class="kawaii-font text-4xl md:text-5xl font-bold text-center mb-12 text-gradient-rainbow text-shadow text-bounce">About Me 🌸</h2>
+            <div class="grid md:grid-cols-2 gap-12 items-center">
+                <div>
+                    <div class="bg-white rounded-3xl p-8 shadow-xl card-hover relative overflow-hidden">
+                        <div class="absolute -top-3 -right-3 w-20 h-20 opacity-15">
+                            <svg viewBox="0 0 100 100" class="w-full h-full">
+                                <!-- Kuromi -->
+                                <circle cx="50" cy="45" r="25" fill="#fff"/>
+                                <circle cx="42" cy="40" r="3" fill="#000"/>
+                                <circle cx="58" cy="40" r="3" fill="#000"/>
+                                <path d="M45 50 Q50 55 55 50" stroke="#000" stroke-width="2" fill="none"/>
+                                <ellipse cx="35" cy="30" rx="12" ry="18" fill="#fff"/>
+                                <ellipse cx="65" cy="30" rx="12" ry="18" fill="#fff"/>
+                                <ellipse cx="35" cy="30" rx="8" ry="14" fill="#ff1493"/>
+                                <ellipse cx="65" cy="30" rx="8" ry="14" fill="#ff1493"/>
+                                <path d="M30 15 Q50 10 70 15" stroke="#ff1493" stroke-width="4" fill="none"/>
+                                <circle cx="45" cy="18" r="2" fill="#ff1493"/>
+                                <circle cx="55" cy="18" r="2" fill="#ff1493"/>
+                            </svg>
+                        </div>
+                        <h3 class="kawaii-font text-2xl font-bold text-gradient-purple mb-4 text-shadow">My Journey 🚀</h3>
+                        <p class="text-gray-600 mb-4">
+                            Hello! I'm a passionate software analyst and developer who believes that code should be both 
+                            functional and delightful. With expertise in multiple programming languages and frameworks, 
+                            I create solutions that not only work perfectly but also bring joy to users.
+                        </p>
+                        <p class="text-gray-600 mb-4">
+                            When I'm not coding, you'll find me exploring new technologies, contributing to open-source 
+                            projects, or sketching cute characters for my next UI design!
+                        </p>
+                        <div class="flex flex-wrap gap-2 mt-6">
+                            <span class="bg-pink-100 text-pink-600 px-3 py-1 rounded-full text-sm font-medium">Problem Solver</span>
+                            <span class="bg-purple-100 text-purple-600 px-3 py-1 rounded-full text-sm font-medium">Team Player</span>
+                            <span class="bg-blue-100 text-blue-600 px-3 py-1 rounded-full text-sm font-medium">Creative Thinker</span>
+                        </div>
+                    </div>
+                </div>
+                <div class="space-y-6">
+                    <div class="bg-gradient-to-r from-pink-400 to-purple-500 rounded-3xl p-8 text-white card-hover relative overflow-hidden">
+                        <div class="absolute -top-2 -right-2 w-16 h-16 opacity-20">
+                            <svg viewBox="0 0 100 100" class="w-full h-full">
+                                <!-- Pompompurin -->
+                                <circle cx="50" cy="45" r="25" fill="#ffd700"/>
+                                <circle cx="42" cy="40" r="3" fill="#000"/>
+                                <circle cx="58" cy="40" r="3" fill="#000"/>
+                                <path d="M45 50 Q50 55 55 50" stroke="#000" stroke-width="2" fill="none"/>
+                                <ellipse cx="35" cy="35" rx="8" ry="12" fill="#ffd700"/>
+                                <ellipse cx="65" cy="35" rx="8" ry="12" fill="#ffd700"/>
+                                <ellipse cx="50" cy="25" rx="15" ry="8" fill="#8b4513"/>
+                                <circle cx="50" cy="20" r="4" fill="#8b4513"/>
+                            </svg>
+                        </div>
+                        <h4 class="text-xl font-bold mb-3">🎯 What I Do</h4>
+                        <ul class="space-y-2">
+                            <li>• Full-Stack Web Development</li>
+                            <li>• Software Architecture & Analysis</li>
+                            <li>• Database Design & Optimization</li>
+                            <li>• UI/UX Design & Prototyping</li>
+                            <li>• Data Analysis & Visualization</li>
+                        </ul>
+                    </div>
+                    <div class="bg-gradient-to-r from-blue-400 to-indigo-500 rounded-3xl p-8 text-white card-hover relative overflow-hidden">
+                        <div class="absolute -top-2 -right-2 w-16 h-16 opacity-20">
+                            <svg viewBox="0 0 100 100" class="w-full h-full">
+                                <!-- Keroppi -->
+                                <circle cx="50" cy="45" r="25" fill="#90ee90"/>
+                                <circle cx="42" cy="40" r="3" fill="#000"/>
+                                <circle cx="58" cy="40" r="3" fill="#000"/>
+                                <path d="M45 50 Q50 55 55 50" stroke="#000" stroke-width="2" fill="none"/>
+                                <circle cx="35" cy="30" r="8" fill="#90ee90"/>
+                                <circle cx="65" cy="30" r="8" fill="#90ee90"/>
+                                <circle cx="35" cy="28" r="4" fill="#228b22"/>
+                                <circle cx="65" cy="28" r="4" fill="#228b22"/>
+                                <path d="M40 60 Q50 70 60 60" stroke="#228b22" stroke-width="3" fill="none"/>
+                            </svg>
+                        </div>
+                        <h4 class="text-xl font-bold mb-3">📊 Experience</h4>
+                        <p>5+ years of creating amazing digital experiences</p>
+                        <p>50+ successful projects delivered</p>
+                        <p>Always learning and growing! 🌱</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Skills Section -->
+    <section id="skills" class="py-16 px-6">
+        <div class="container mx-auto">
+            <h2 class="kawaii-font text-4xl md:text-5xl font-bold text-center mb-12 text-gradient-purple text-shadow text-wiggle">My Superpowers 💫</h2>
+            <div class="grid md:grid-cols-2 lg:grid-cols-3 gap-8">
+                <!-- Programming Languages -->
+                <div class="bg-white rounded-3xl p-8 shadow-xl card-hover relative overflow-hidden">
+                    <div class="absolute -top-2 -right-2 w-16 h-16 opacity-20">
+                        <svg viewBox="0 0 100 100" class="w-full h-full">
+                            <!-- Hello Kitty -->
+                            <circle cx="50" cy="45" r="25" fill="#ff69b4"/>
+                            <circle cx="42" cy="40" r="3" fill="#000"/>
+                            <circle cx="58" cy="40" r="3" fill="#000"/>
+                            <path d="M45 50 Q50 55 55 50" stroke="#000" stroke-width="2" fill="none"/>
+                            <circle cx="30" cy="35" r="8" fill="#ff69b4"/>
+                            <circle cx="70" cy="35" r="8" fill="#ff69b4"/>
+                            <path d="M35 30 L25 25 M35 40 L25 45" stroke="#000" stroke-width="2"/>
+                            <path d="M65 30 L75 25 M65 40 L75 45" stroke="#000" stroke-width="2"/>
+                        </svg>
+                    </div>
+                    <div class="text-4xl mb-4">👩‍💻</div>
+                    <h3 class="text-xl font-bold text-gray-800 mb-6">Programming Languages</h3>
+                    <div class="space-y-4">
+                        <div class="skill-item">
+                            <div class="flex justify-between mb-2">
+                                <span class="text-gray-600">JavaScript</span>
+                                <span class="text-purple-500 font-semibold">95%</span>
+                            </div>
+                            <div class="bg-gray-200 rounded-full h-3">
+                                <div class="skill-bar bg-gradient-to-r from-yellow-400 to-orange-500 h-3 rounded-full" style="width: 95%"></div>
+                            </div>
+                        </div>
+                        <div class="skill-item">
+                            <div class="flex justify-between mb-2">
+                                <span class="text-gray-600">Python</span>
+                                <span class="text-purple-500 font-semibold">90%</span>
+                            </div>
+                            <div class="bg-gray-200 rounded-full h-3">
+                                <div class="skill-bar bg-gradient-to-r from-blue-400 to-blue-600 h-3 rounded-full" style="width: 90%"></div>
+                            </div>
+                        </div>
+                        <div class="skill-item">
+                            <div class="flex justify-between mb-2">
+                                <span class="text-gray-600">Java</span>
+                                <span class="text-purple-500 font-semibold">85%</span>
+                            </div>
+                            <div class="bg-gray-200 rounded-full h-3">
+                                <div class="skill-bar bg-gradient-to-r from-red-400 to-red-600 h-3 rounded-full" style="width: 85%"></div>
+                            </div>
+                        </div>
+                        <div class="skill-item">
+                            <div class="flex justify-between mb-2">
+                                <span class="text-gray-600">C#</span>
+                                <span class="text-purple-500 font-semibold">80%</span>
+                            </div>
+                            <div class="bg-gray-200 rounded-full h-3">
+                                <div class="skill-bar bg-gradient-to-r from-purple-400 to-purple-600 h-3 rounded-full" style="width: 80%"></div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Frameworks & Tools -->
+                <div class="bg-white rounded-3xl p-8 shadow-xl card-hover relative overflow-hidden">
+                    <div class="absolute -top-2 -right-2 w-16 h-16 opacity-20">
+                        <svg viewBox="0 0 100 100" class="w-full h-full">
+                            <!-- My Melody -->
+                            <circle cx="50" cy="45" r="25" fill="#ffc0cb"/>
+                            <circle cx="42" cy="40" r="3" fill="#000"/>
+                            <circle cx="58" cy="40" r="3" fill="#000"/>
+                            <path d="M45 50 Q50 55 55 50" stroke="#000" stroke-width="2" fill="none"/>
+                            <ellipse cx="35" cy="30" rx="12" ry="18" fill="#fff"/>
+                            <ellipse cx="65" cy="30" rx="12" ry="18" fill="#fff"/>
+                            <ellipse cx="35" cy="30" rx="8" ry="14" fill="#ffc0cb"/>
+                            <ellipse cx="65" cy="30" rx="8" ry="14" fill="#ffc0cb"/>
+                            <path d="M40 20 Q50 15 60 20" stroke="#ff69b4" stroke-width="3" fill="none"/>
+                        </svg>
+                    </div>
+                    <div class="text-4xl mb-4">🛠️</div>
+                    <h3 class="text-xl font-bold text-gray-800 mb-6">Frameworks & Tools</h3>
+                    <div class="space-y-4">
+                        <div class="skill-item">
+                            <div class="flex justify-between mb-2">
+                                <span class="text-gray-600">React/Next.js</span>
+                                <span class="text-purple-500 font-semibold">92%</span>
+                            </div>
+                            <div class="bg-gray-200 rounded-full h-3">
+                                <div class="skill-bar bg-gradient-to-r from-cyan-400 to-blue-500 h-3 rounded-full" style="width: 92%"></div>
+                            </div>
+                        </div>
+                        <div class="skill-item">
+                            <div class="flex justify-between mb-2">
+                                <span class="text-gray-600">Node.js</span>
+                                <span class="text-purple-500 font-semibold">88%</span>
+                            </div>
+                            <div class="bg-gray-200 rounded-full h-3">
+                                <div class="skill-bar bg-gradient-to-r from-green-400 to-green-600 h-3 rounded-full" style="width: 88%"></div>
+                            </div>
+                        </div>
+                        <div class="skill-item">
+                            <div class="flex justify-between mb-2">
+                                <span class="text-gray-600">Django/Flask</span>
+                                <span class="text-purple-500 font-semibold">85%</span>
+                            </div>
+                            <div class="bg-gray-200 rounded-full h-3">
+                                <div class="skill-bar bg-gradient-to-r from-emerald-400 to-teal-500 h-3 rounded-full" style="width: 85%"></div>
+                            </div>
+                        </div>
+                        <div class="skill-item">
+                            <div class="flex justify-between mb-2">
+                                <span class="text-gray-600">Docker</span>
+                                <span class="text-purple-500 font-semibold">75%</span>
+                            </div>
+                            <div class="bg-gray-200 rounded-full h-3">
+                                <div class="skill-bar bg-gradient-to-r from-blue-500 to-indigo-600 h-3 rounded-full" style="width: 75%"></div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Databases & Analytics -->
+                <div class="bg-white rounded-3xl p-8 shadow-xl card-hover relative overflow-hidden">
+                    <div class="absolute -top-2 -right-2 w-16 h-16 opacity-20">
+                        <svg viewBox="0 0 100 100" class="w-full h-full">
+                            <!-- Cinnamoroll -->
+                            <circle cx="50" cy="45" r="25" fill="#e6f3ff"/>
+                            <circle cx="42" cy="40" r="3" fill="#000"/>
+                            <circle cx="58" cy="40" r="3" fill="#000"/>
+                            <path d="M45 50 Q50 55 55 50" stroke="#000" stroke-width="2" fill="none"/>
+                            <ellipse cx="30" cy="35" rx="15" ry="10" fill="#e6f3ff"/>
+                            <ellipse cx="70" cy="35" rx="15" ry="10" fill="#e6f3ff"/>
+                            <path d="M35 25 Q25 20 20 30" stroke="#87ceeb" stroke-width="2" fill="none"/>
+                            <path d="M65 25 Q75 20 80 30" stroke="#87ceeb" stroke-width="2" fill="none"/>
+                            <circle cx="50" cy="65" r="8" fill="#87ceeb"/>
+                        </svg>
+                    </div>
+                    <div class="text-4xl mb-4">📊</div>
+                    <h3 class="text-xl font-bold text-gray-800 mb-6">Data & Analytics</h3>
+                    <div class="space-y-4">
+                        <div class="skill-item">
+                            <div class="flex justify-between mb-2">
+                                <span class="text-gray-600">SQL/PostgreSQL</span>
+                                <span class="text-purple-500 font-semibold">90%</span>
+                            </div>
+                            <div class="bg-gray-200 rounded-full h-3">
+                                <div class="skill-bar bg-gradient-to-r from-indigo-400 to-purple-500 h-3 rounded-full" style="width: 90%"></div>
+                            </div>
+                        </div>
+                        <div class="skill-item">
+                            <div class="flex justify-between mb-2">
+                                <span class="text-gray-600">MongoDB</span>
+                                <span class="text-purple-500 font-semibold">82%</span>
+                            </div>
+                            <div class="bg-gray-200 rounded-full h-3">
+                                <div class="skill-bar bg-gradient-to-r from-green-500 to-emerald-600 h-3 rounded-full" style="width: 82%"></div>
+                            </div>
+                        </div>
+                        <div class="skill-item">
+                            <div class="flex justify-between mb-2">
+                                <span class="text-gray-600">Pandas/NumPy</span>
+                                <span class="text-purple-500 font-semibold">88%</span>
+                            </div>
+                            <div class="bg-gray-200 rounded-full h-3">
+                                <div class="skill-bar bg-gradient-to-r from-orange-400 to-red-500 h-3 rounded-full" style="width: 88%"></div>
+                            </div>
+                        </div>
+                        <div class="skill-item">
+                            <div class="flex justify-between mb-2">
+                                <span class="text-gray-600">Tableau/Power BI</span>
+                                <span class="text-purple-500 font-semibold">78%</span>
+                            </div>
+                            <div class="bg-gray-200 rounded-full h-3">
+                                <div class="skill-bar bg-gradient-to-r from-pink-400 to-rose-500 h-3 rounded-full" style="width: 78%"></div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Projects Section -->
+    <section id="projects" class="py-16 px-6 bg-white/50">
+        <div class="container mx-auto">
+            <h2 class="kawaii-font text-4xl md:text-5xl font-bold text-center mb-12 text-gradient-pink text-shadow text-bounce">My Creations 🎨</h2>
+            <div class="grid md:grid-cols-2 lg:grid-cols-3 gap-8">
+                <!-- Project 1 -->
+                <div class="bg-white rounded-3xl overflow-hidden shadow-xl card-hover">
+                    <div class="h-48 bg-gradient-to-br from-pink-400 to-purple-500 flex items-center justify-center">
+                        <div class="text-6xl">🛍️</div>
+                    </div>
+                    <div class="p-6">
+                        <h3 class="text-xl font-bold text-gray-800 mb-2">E-Commerce Platform</h3>
+                        <p class="text-gray-600 mb-4">Full-stack shopping platform with real-time inventory, payment integration, and admin dashboard.</p>
+                        <div class="flex flex-wrap gap-2 mb-4">
+                            <span class="bg-blue-100 text-blue-600 px-2 py-1 rounded text-sm">React</span>
+                            <span class="bg-green-100 text-green-600 px-2 py-1 rounded text-sm">Node.js</span>
+                            <span class="bg-purple-100 text-purple-600 px-2 py-1 rounded text-sm">MongoDB</span>
+                        </div>
+                        <div class="flex gap-3">
+                            <button onclick="openProjectModal('project1')" class="click-effect flex-1 bg-gradient-to-r from-pink-500 to-purple-600 text-white py-2 rounded-lg font-medium hover:shadow-lg transition-all">
+                                View Details
+                            </button>
+                            <button class="click-effect px-4 py-2 border border-purple-500 text-purple-500 rounded-lg hover:bg-purple-500 hover:text-white transition-all">
+                                Demo
+                            </button>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Project 2 -->
+                <div class="bg-white rounded-3xl overflow-hidden shadow-xl card-hover">
+                    <div class="h-48 bg-gradient-to-br from-blue-400 to-indigo-500 flex items-center justify-center">
+                        <div class="text-6xl">📊</div>
+                    </div>
+                    <div class="p-6">
+                        <h3 class="text-xl font-bold text-gray-800 mb-2">Data Analytics Dashboard</h3>
+                        <p class="text-gray-600 mb-4">Interactive dashboard for business intelligence with real-time data visualization and reporting.</p>
+                        <div class="flex flex-wrap gap-2 mb-4">
+                            <span class="bg-yellow-100 text-yellow-600 px-2 py-1 rounded text-sm">Python</span>
+                            <span class="bg-red-100 text-red-600 px-2 py-1 rounded text-sm">Django</span>
+                            <span class="bg-blue-100 text-blue-600 px-2 py-1 rounded text-sm">PostgreSQL</span>
+                        </div>
+                        <div class="flex gap-3">
+                            <button onclick="openProjectModal('project2')" class="click-effect flex-1 bg-gradient-to-r from-blue-500 to-indigo-600 text-white py-2 rounded-lg font-medium hover:shadow-lg transition-all">
+                                View Details
+                            </button>
+                            <button class="click-effect px-4 py-2 border border-blue-500 text-blue-500 rounded-lg hover:bg-blue-500 hover:text-white transition-all">
+                                Demo
+                            </button>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Project 3 -->
+                <div class="bg-white rounded-3xl overflow-hidden shadow-xl card-hover">
+                    <div class="h-48 bg-gradient-to-br from-green-400 to-teal-500 flex items-center justify-center">
+                        <div class="text-6xl">📱</div>
+                    </div>
+                    <div class="p-6">
+                        <h3 class="text-xl font-bold text-gray-800 mb-2">Mobile Task Manager</h3>
+                        <p class="text-gray-600 mb-4">Cross-platform mobile app for team collaboration with offline sync and push notifications.</p>
+                        <div class="flex flex-wrap gap-2 mb-4">
+                            <span class="bg-cyan-100 text-cyan-600 px-2 py-1 rounded text-sm">React Native</span>
+                            <span class="bg-orange-100 text-orange-600 px-2 py-1 rounded text-sm">Firebase</span>
+                            <span class="bg-green-100 text-green-600 px-2 py-1 rounded text-sm">Redux</span>
+                        </div>
+                        <div class="flex gap-3">
+                            <button onclick="openProjectModal('project3')" class="click-effect flex-1 bg-gradient-to-r from-green-500 to-teal-600 text-white py-2 rounded-lg font-medium hover:shadow-lg transition-all">
+                                View Details
+                            </button>
+                            <button class="click-effect px-4 py-2 border border-green-500 text-green-500 rounded-lg hover:bg-green-500 hover:text-white transition-all">
+                                Demo
+                            </button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Contact Section -->
+    <section id="contact" class="py-16 px-6">
+        <div class="container mx-auto">
+            <h2 class="kawaii-font text-4xl md:text-5xl font-bold text-center mb-12 text-gradient-rainbow text-shadow text-wiggle">Let's Create Magic Together! ✨</h2>
+            <div class="grid md:grid-cols-2 gap-12 max-w-6xl mx-auto">
+                <div>
+                    <div class="bg-white rounded-3xl p-8 shadow-xl relative overflow-hidden">
+                        <div class="absolute -top-3 -right-3 w-20 h-20 opacity-15">
+                            <svg viewBox="0 0 100 100" class="w-full h-full">
+                                <!-- Little Twin Stars (Kiki) -->
+                                <circle cx="35" cy="40" r="18" fill="#87ceeb"/>
+                                <circle cx="65" cy="40" r="18" fill="#ffb6c1"/>
+                                <circle cx="30" cy="35" r="2" fill="#000"/>
+                                <circle cx="40" cy="35" r="2" fill="#000"/>
+                                <circle cx="60" cy="35" r="2" fill="#000"/>
+                                <circle cx="70" cy="35" r="2" fill="#000"/>
+                                <path d="M30 42 Q35 47 40 42" stroke="#000" stroke-width="1" fill="none"/>
+                                <path d="M60 42 Q65 47 70 42" stroke="#000" stroke-width="1" fill="none"/>
+                                <path d="M35 20 L30 10 M35 20 L40 10" stroke="#87ceeb" stroke-width="2"/>
+                                <path d="M65 20 L60 10 M65 20 L70 10" stroke="#ffb6c1" stroke-width="2"/>
+                                <circle cx="32" cy="8" r="3" fill="#ffd700"/>
+                                <circle cx="68" cy="8" r="3" fill="#ffd700"/>
+                            </svg>
+                        </div>
+                        <h3 class="text-2xl font-bold text-gray-800 mb-6">Get In Touch 💌</h3>
+                        <div class="space-y-6">
+                            <div class="flex items-center space-x-4">
+                                <div class="w-12 h-12 bg-gradient-to-r from-pink-400 to-purple-500 rounded-full flex items-center justify-center">
+                                    <span class="text-white text-xl">📧</span>
+                                </div>
+                                <div>
+                                    <p class="font-semibold text-gray-800">Email</p>
+                                    <p class="text-gray-600">as.sanpascual@email.com</p>
+                                </div>
+                            </div>
+                            <div class="flex items-center space-x-4">
+                                <div class="w-12 h-12 bg-gradient-to-r from-blue-400 to-indigo-500 rounded-full flex items-center justify-center">
+                                    <span class="text-white text-xl">💼</span>
+                                </div>
+                                <div>
+                                    <p class="font-semibold text-gray-800">LinkedIn</p>
+                                    <p class="text-gray-600">linkedin.com/in/as-sanpascual</p>
+                                </div>
+                            </div>
+                            <div class="flex items-center space-x-4">
+                                <div class="w-12 h-12 bg-gradient-to-r from-gray-700 to-gray-900 rounded-full flex items-center justify-center">
+                                    <span class="text-white text-xl">🐱</span>
+                                </div>
+                                <div>
+                                    <p class="font-semibold text-gray-800">GitHub</p>
+                                    <p class="text-gray-600">github.com/as-sanpascual</p>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div>
+                    <div class="bg-white rounded-3xl p-8 shadow-xl relative overflow-hidden">
+                        <div class="absolute -top-3 -right-3 w-20 h-20 opacity-15">
+                            <svg viewBox="0 0 100 100" class="w-full h-full">
+                                <!-- Badtz-Maru -->
+                                <circle cx="50" cy="45" r="25" fill="#000"/>
+                                <circle cx="42" cy="40" r="3" fill="#fff"/>
+                                <circle cx="58" cy="40" r="3" fill="#fff"/>
+                                <path d="M45 50 Q50 55 55 50" stroke="#fff" stroke-width="2" fill="none"/>
+                                <path d="M35 25 Q50 15 65 25" stroke="#000" stroke-width="3" fill="none"/>
+                                <circle cx="40" cy="22" r="3" fill="#000"/>
+                                <circle cx="60" cy="22" r="3" fill="#000"/>
+                                <ellipse cx="50" cy="65" rx="8" ry="5" fill="#ffa500"/>
+                                <ellipse cx="50" cy="67" rx="6" ry="3" fill="#ff8c00"/>
+                            </svg>
+                        </div>
+                        <h3 class="text-2xl font-bold text-gray-800 mb-6">Send a Message 🌟</h3>
+                        <form class="space-y-6" onsubmit="handleContactForm(event)">
+                            <div>
+                                <label class="block text-gray-700 font-medium mb-2">Name</label>
+                                <input type="text" required class="w-full px-4 py-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-purple-500 focus:border-transparent transition-all">
+                            </div>
+                            <div>
+                                <label class="block text-gray-700 font-medium mb-2">Email</label>
+                                <input type="email" required class="w-full px-4 py-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-purple-500 focus:border-transparent transition-all">
+                            </div>
+                            <div>
+                                <label class="block text-gray-700 font-medium mb-2">Message</label>
+                                <textarea rows="4" required class="w-full px-4 py-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-purple-500 focus:border-transparent transition-all resize-none"></textarea>
+                            </div>
+                            <button type="submit" class="click-effect w-full bg-gradient-to-r from-pink-500 to-purple-600 text-white py-3 rounded-lg font-semibold hover:shadow-lg transform hover:scale-105 transition-all duration-300">
+                                Send Message 💫
+                            </button>
+                        </form>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer class="bg-gradient-to-r from-purple-600 to-pink-600 text-white py-12 px-6">
+        <div class="container mx-auto text-center">
+            <div class="mb-6">
+                <div class="w-16 h-16 bg-white/20 rounded-full flex items-center justify-center mx-auto mb-4 chibi-bounce">
+                    <span class="text-2xl">🌸</span>
+                </div>
+                <h3 class="text-2xl font-bold mb-2">AS S. SAN PASCUAL</h3>
+                <p class="text-purple-100">Software Analyst & Developer</p>
+            </div>
+            <div class="flex justify-center space-x-6 mb-8">
+                <a href="#" class="w-10 h-10 bg-white/20 rounded-full flex items-center justify-center hover:bg-white/30 transition-all">
+                    <span>📧</span>
+                </a>
+                <a href="#" class="w-10 h-10 bg-white/20 rounded-full flex items-center justify-center hover:bg-white/30 transition-all">
+                    <span>💼</span>
+                </a>
+                <a href="#" class="w-10 h-10 bg-white/20 rounded-full flex items-center justify-center hover:bg-white/30 transition-all">
+                    <span>🐱</span>
+                </a>
+            </div>
+            <p class="text-purple-100">© 2024 AS S. SAN PASCUAL. Made with 💖 and lots of ☕</p>
+        </div>
+    </footer>
+
+    <!-- Loading Overlay -->
+    <div id="loadingOverlay" class="loading-overlay">
+        <div class="loading-content">
+            <div class="loading-kawaii" id="loadingEmoji">🌸</div>
+            <div class="loading-spinner">
+                <div class="spinner-ring"></div>
+            </div>
+            <div class="loading-text" id="loadingText">Loading...</div>
+            <div class="loading-subtitle" id="loadingSubtitle">Please wait while we prepare something magical!</div>
+            <div class="loading-dots">
+                <div class="loading-dot"></div>
+                <div class="loading-dot"></div>
+                <div class="loading-dot"></div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Project Modal -->
+    <div id="projectModal" class="modal">
+        <div class="bg-white rounded-3xl p-8 max-w-2xl mx-4 max-h-[90vh] overflow-y-auto">
+            <div class="flex justify-between items-center mb-6">
+                <h3 id="modalTitle" class="text-2xl font-bold text-gray-800"></h3>
+                <button onclick="closeProjectModal()" class="text-gray-500 hover:text-gray-700 text-2xl">×</button>
+            </div>
+            <div id="modalContent"></div>
+        </div>
+    </div>
+
+    <script>
+        // Smooth scrolling for navigation
+        function scrollToSection(sectionId) {
+            document.getElementById(sectionId).scrollIntoView({
+                behavior: 'smooth'
+            });
+        }
+
+        // Loading functionality
+        const loadingMessages = {
+            about: {
+                emoji: '🌸',
+                text: 'Loading About Me...',
+                subtitle: 'Preparing my kawaii story for you! ✨'
+            },
+            skills: {
+                emoji: '💫',
+                text: 'Loading Skills...',
+                subtitle: 'Gathering all my superpowers! 🚀'
+            },
+            projects: {
+                emoji: '🎨',
+                text: 'Loading Projects...',
+                subtitle: 'Showcasing my magical creations! 🌟'
+            },
+            contact: {
+                emoji: '💌',
+                text: 'Loading Contact...',
+                subtitle: 'Setting up our communication portal! 📧'
+            }
+        };
+
+        function showLoading(section) {
+            const overlay = document.getElementById('loadingOverlay');
+            const emoji = document.getElementById('loadingEmoji');
+            const text = document.getElementById('loadingText');
+            const subtitle = document.getElementById('loadingSubtitle');
+            
+            const config = loadingMessages[section] || loadingMessages.about;
+            
+            emoji.textContent = config.emoji;
+            text.textContent = config.text;
+            subtitle.textContent = config.subtitle;
+            
+            overlay.classList.add('show');
+            
+            // Hide loading after 2-3 seconds
+            setTimeout(() => {
+                overlay.classList.remove('show');
+            }, 2000 + Math.random() * 1000);
+        }
+
+        // Navigation link active state with loading
+        document.querySelectorAll('.nav-link').forEach(link => {
+            link.addEventListener('click', function(e) {
+                e.preventDefault();
+                const targetId = this.getAttribute('href').substring(1);
+                
+                // Show loading for specific sections
+                if (['about', 'skills', 'projects', 'contact'].includes(targetId)) {
+                    showLoading(targetId);
+                    
+                    // Scroll after a short delay
+                    setTimeout(() => {
+                        scrollToSection(targetId);
+                    }, 500);
+                } else {
+                    scrollToSection(targetId);
+                }
+            });
+        });
+
+        // Theme toggle
+        const themeToggle = document.getElementById('theme-toggle');
+        let isDarkMode = false;
+
+        themeToggle.addEventListener('click', function() {
+            isDarkMode = !isDarkMode;
+            document.body.classList.toggle('dark-mode', isDarkMode);
+            this.innerHTML = isDarkMode ? '<span class="text-xl">☀️</span>' : '<span class="text-xl">🌙</span>';
+        });
+
+        // Skill bar animation on scroll
+        const observerOptions = {
+            threshold: 0.5,
+            rootMargin: '0px 0px -100px 0px'
+        };
+
+        const observer = new IntersectionObserver(function(entries) {
+            entries.forEach(entry => {
+                if (entry.isIntersecting) {
+                    const skillBars = entry.target.querySelectorAll('.skill-bar');
+                    skillBars.forEach(bar => {
+                        bar.style.width = bar.style.width;
+                    });
+                }
+            });
+        }, observerOptions);
+
+        document.querySelectorAll('#skills .card-hover').forEach(card => {
+            observer.observe(card);
+        });
+
+        // Project modal functionality
+        const projectData = {
+            project1: {
+                title: 'E-Commerce Platform',
+                content: `
+                    <div class="space-y-6">
+                        <div class="h-48 bg-gradient-to-br from-pink-400 to-purple-500 rounded-2xl flex items-center justify-center">
+                            <div class="text-8xl">🛍️</div>
+                        </div>
+                        <div>
+                            <h4 class="text-xl font-bold text-gray-800 mb-3">Project Overview</h4>
+                            <p class="text-gray-600 mb-4">A comprehensive e-commerce solution built with modern technologies, featuring real-time inventory management, secure payment processing, and an intuitive admin dashboard.</p>
+                        </div>
+                        <div>
+                            <h4 class="text-xl font-bold text-gray-800 mb-3">Key Features</h4>
+                            <ul class="text-gray-600 space-y-2">
+                                <li>• Real-time inventory tracking</li>
+                                <li>• Secure payment integration (Stripe, PayPal)</li>
+                                <li>• Advanced search and filtering</li>
+                                <li>• Order management system</li>
+                                <li>• Customer reviews and ratings</li>
+                                <li>• Mobile-responsive design</li>
+                            </ul>
+                        </div>
+                        <div>
+                            <h4 class="text-xl font-bold text-gray-800 mb-3">Technologies Used</h4>
+                            <div class="flex flex-wrap gap-2">
+                                <span class="bg-blue-100 text-blue-600 px-3 py-1 rounded-full text-sm">React</span>
+                                <span class="bg-green-100 text-green-600 px-3 py-1 rounded-full text-sm">Node.js</span>
+                                <span class="bg-purple-100 text-purple-600 px-3 py-1 rounded-full text-sm">MongoDB</span>
+                                <span class="bg-yellow-100 text-yellow-600 px-3 py-1 rounded-full text-sm">Express.js</span>
+                                <span class="bg-red-100 text-red-600 px-3 py-1 rounded-full text-sm">Redis</span>
+                            </div>
+                        </div>
+                    </div>
+                `
+            },
+            project2: {
+                title: 'Data Analytics Dashboard',
+                content: `
+                    <div class="space-y-6">
+                        <div class="h-48 bg-gradient-to-br from-blue-400 to-indigo-500 rounded-2xl flex items-center justify-center">
+                            <div class="text-8xl">📊</div>
+                        </div>
+                        <div>
+                            <h4 class="text-xl font-bold text-gray-800 mb-3">Project Overview</h4>
+                            <p class="text-gray-600 mb-4">An interactive business intelligence dashboard that transforms complex data into actionable insights through beautiful visualizations and real-time reporting.</p>
+                        </div>
+                        <div>
+                            <h4 class="text-xl font-bold text-gray-800 mb-3">Key Features</h4>
+                            <ul class="text-gray-600 space-y-2">
+                                <li>• Real-time data visualization</li>
+                                <li>• Custom report generation</li>
+                                <li>• Interactive charts and graphs</li>
+                                <li>• Data export capabilities</li>
+                                <li>• User role management</li>
+                                <li>• Automated alerts and notifications</li>
+                            </ul>
+                        </div>
+                        <div>
+                            <h4 class="text-xl font-bold text-gray-800 mb-3">Technologies Used</h4>
+                            <div class="flex flex-wrap gap-2">
+                                <span class="bg-yellow-100 text-yellow-600 px-3 py-1 rounded-full text-sm">Python</span>
+                                <span class="bg-red-100 text-red-600 px-3 py-1 rounded-full text-sm">Django</span>
+                                <span class="bg-blue-100 text-blue-600 px-3 py-1 rounded-full text-sm">PostgreSQL</span>
+                                <span class="bg-green-100 text-green-600 px-3 py-1 rounded-full text-sm">Chart.js</span>
+                                <span class="bg-purple-100 text-purple-600 px-3 py-1 rounded-full text-sm">Pandas</span>
+                            </div>
+                        </div>
+                    </div>
+                `
+            },
+            project3: {
+                title: 'Mobile Task Manager',
+                content: `
+                    <div class="space-y-6">
+                        <div class="h-48 bg-gradient-to-br from-green-400 to-teal-500 rounded-2xl flex items-center justify-center">
+                            <div class="text-8xl">📱</div>
+                        </div>
+                        <div>
+                            <h4 class="text-xl font-bold text-gray-800 mb-3">Project Overview</h4>
+                            <p class="text-gray-600 mb-4">A cross-platform mobile application designed for team collaboration, featuring offline synchronization, push notifications, and intuitive task management.</p>
+                        </div>
+                        <div>
+                            <h4 class="text-xl font-bold text-gray-800 mb-3">Key Features</h4>
+                            <ul class="text-gray-600 space-y-2">
+                                <li>• Cross-platform compatibility</li>
+                                <li>• Offline data synchronization</li>
+                                <li>• Push notifications</li>
+                                <li>• Team collaboration tools</li>
+                                <li>• Task prioritization and categorization</li>
+                                <li>• Progress tracking and analytics</li>
+                            </ul>
+                        </div>
+                        <div>
+                            <h4 class="text-xl font-bold text-gray-800 mb-3">Technologies Used</h4>
+                            <div class="flex flex-wrap gap-2">
+                                <span class="bg-cyan-100 text-cyan-600 px-3 py-1 rounded-full text-sm">React Native</span>
+                                <span class="bg-orange-100 text-orange-600 px-3 py-1 rounded-full text-sm">Firebase</span>
+                                <span class="bg-green-100 text-green-600 px-3 py-1 rounded-full text-sm">Redux</span>
+                                <span class="bg-blue-100 text-blue-600 px-3 py-1 rounded-full text-sm">AsyncStorage</span>
+                                <span class="bg-purple-100 text-purple-600 px-3 py-1 rounded-full text-sm">Expo</span>
+                            </div>
+                        </div>
+                    </div>
+                `
+            }
+        };
+
+        function openProjectModal(projectId) {
+            // Show loading first
+            showLoading('projects');
+            
+            // Open modal after loading
+            setTimeout(() => {
+                const modal = document.getElementById('projectModal');
+                const modalTitle = document.getElementById('modalTitle');
+                const modalContent = document.getElementById('modalContent');
+                
+                modalTitle.textContent = projectData[projectId].title;
+                modalContent.innerHTML = projectData[projectId].content;
+                modal.classList.add('show');
+            }, 1500);
+        }
+
+        function closeProjectModal() {
+            const modal = document.getElementById('projectModal');
+            modal.classList.remove('show');
+        }
+
+        // Close modal when clicking outside
+        document.getElementById('projectModal').addEventListener('click', function(e) {
+            if (e.target === this) {
+                closeProjectModal();
+            }
+        });
+
+        // Contact form handling
+        function handleContactForm(event) {
+            event.preventDefault();
+            
+            // Show success message
+            const button = event.target.querySelector('button[type="submit"]');
+            const originalText = button.innerHTML;
+            button.innerHTML = 'Message Sent! 🎉';
+            button.disabled = true;
+            
+            // Reset form after 3 seconds
+            setTimeout(() => {
+                event.target.reset();
+                button.innerHTML = originalText;
+                button.disabled = false;
+            }, 3000);
+        }
+
+        // Add scroll effect to navigation
+        window.addEventListener('scroll', function() {
+            const nav = document.querySelector('nav');
+            if (window.scrollY > 100) {
+                nav.classList.add('bg-white/90');
+            } else {
+                nav.classList.remove('bg-white/90');
+            }
+        });
+
+        // Initialize typing animation
+        setTimeout(() => {
+            const typingElement = document.querySelector('.typing-animation');
+            if (typingElement) {
+                typingElement.style.width = '100%';
+            }
+        }, 1000);
+
+        // Add click effects to all buttons
+        document.addEventListener('click', function(e) {
+            if (e.target.classList.contains('click-effect')) {
+                // Add ripple effect
+                e.target.classList.add('clicked');
+                setTimeout(() => {
+                    e.target.classList.remove('clicked');
+                }, 600);
+
+                // Add pulse glow effect
+                e.target.classList.add('pulse-glow');
+                setTimeout(() => {
+                    e.target.classList.remove('pulse-glow');
+                }, 800);
+
+                // Create sparkle particles
+                createSparkles(e.target, e.clientX, e.clientY);
+            }
+        });
+
+        // Create sparkle animation
+        function createSparkles(element, x, y) {
+            const rect = element.getBoundingClientRect();
+            const sparkleCount = 6;
+            
+            for (let i = 0; i < sparkleCount; i++) {
+                const sparkle = document.createElement('div');
+                sparkle.innerHTML = ['✨', '⭐', '💫', '🌟'][Math.floor(Math.random() * 4)];
+                sparkle.style.position = 'fixed';
+                sparkle.style.left = x + 'px';
+                sparkle.style.top = y + 'px';
+                sparkle.style.fontSize = '20px';
+                sparkle.style.pointerEvents = 'none';
+                sparkle.style.zIndex = '9999';
+                sparkle.classList.add('sparkle-animation');
+                
+                // Random direction
+                const angle = (i / sparkleCount) * 2 * Math.PI;
+                const distance = 50 + Math.random() * 30;
+                const finalX = x + Math.cos(angle) * distance;
+                const finalY = y + Math.sin(angle) * distance;
+                
+                document.body.appendChild(sparkle);
+                
+                // Animate to final position
+                setTimeout(() => {
+                    sparkle.style.left = finalX + 'px';
+                    sparkle.style.top = finalY + 'px';
+                }, 10);
+                
+                // Remove after animation
+                setTimeout(() => {
+                    if (sparkle.parentNode) {
+                        sparkle.parentNode.removeChild(sparkle);
+                    }
+                }, 1500);
+            }
+        }
+
+        // Profile picture upload functionality
+        function triggerFileUpload() {
+            document.getElementById('fileInput').click();
+        }
+
+        function handleImageUpload(event) {
+            const file = event.target.files[0];
+            if (file) {
+                const reader = new FileReader();
+                reader.onload = function(e) {
+                    const imageData = e.target.result;
+                    const profileImage = document.getElementById('profileImage');
+                    const defaultAvatar = document.getElementById('defaultAvatar');
+                    
+                    profileImage.src = imageData;
+                    profileImage.style.display = 'block';
+                    defaultAvatar.style.display = 'none';
+                    
+                    // Save to localStorage
+                    localStorage.setItem('profileImage', imageData);
+                    
+                    // Add success animation
+                    const container = profileImage.parentElement;
+                    container.classList.add('pulse-glow');
+                    setTimeout(() => {
+                        container.classList.remove('pulse-glow');
+                    }, 800);
+                    
+                    // Create success sparkles
+                    const rect = container.getBoundingClientRect();
+                    const centerX = rect.left + rect.width / 2;
+                    const centerY = rect.top + rect.height / 2;
+                    createSparkles(container, centerX, centerY);
+                };
+                reader.readAsDataURL(file);
+            }
+        }
+
+        // Load saved profile image on page load
+        function loadSavedProfileImage() {
+            const savedImage = localStorage.getItem('profileImage');
+            if (savedImage) {
+                const profileImage = document.getElementById('profileImage');
+                const defaultAvatar = document.getElementById('defaultAvatar');
+                
+                profileImage.src = savedImage;
+                profileImage.style.display = 'block';
+                defaultAvatar.style.display = 'none';
+            }
+        }
+
+        // View Work button with loading animation
+        function handleViewWorkClick() {
+            const btn = document.getElementById('viewWorkBtn');
+            const text = document.getElementById('viewWorkText');
+            const spinner = document.getElementById('viewWorkSpinner');
+            
+            // Show loading state
+            text.classList.add('hidden');
+            spinner.classList.remove('hidden');
+            btn.disabled = true;
+            btn.classList.add('opacity-75', 'cursor-not-allowed');
+            
+            // Show loading overlay for projects
+            showLoading('projects');
+            
+            // After loading, scroll to projects and reset button
+            setTimeout(() => {
+                scrollToSection('projects');
+                
+                // Reset button after scroll
+                setTimeout(() => {
+                    text.classList.remove('hidden');
+                    spinner.classList.add('hidden');
+                    btn.disabled = false;
+                    btn.classList.remove('opacity-75', 'cursor-not-allowed');
+                }, 500);
+            }, 2000);
+        }
+
+        // Enhanced button interactions
+        document.querySelectorAll('button').forEach(button => {
+            button.addEventListener('mouseenter', function() {
+                if (Math.random() > 0.7) { // 30% chance for extra effect
+                    this.classList.add('shake-animation');
+                    setTimeout(() => {
+                        this.classList.remove('shake-animation');
+                    }, 600);
+                }
+            });
+        });
+
+        // Animated Background with Cute Elements
+        const cuteElements = [
+            '🌸', '🌺', '🌻', '🌷', '🌹', '💖', '💕', '💗', '💓', '💝',
+            '✨', '⭐', '🌟', '💫', '🎀', '🎈', '🎉', '🎊', '🦄', '🌈',
+            '🍓', '🍑', '🍒', '🍰', '🧁', '🍭', '🍬', '🍯', '🐱', '🐰',
+            '🐻', '🐼', '🐨', '🦊', '🐸', '🐙', '🦋', '🌙', '☁️', '⛅',
+            '🎵', '🎶', '💎', '👑', '🎪', '🎭', '🎨', '🖍️', '✏️', '📝'
+        ];
+
+        const animationStyles = ['', 'bounce-style', 'float-style', 'heart-pulse'];
+
+        function createCuteElement() {
+            const element = document.createElement('div');
+            const randomEmoji = cuteElements[Math.floor(Math.random() * cuteElements.length)];
+            const randomStyle = animationStyles[Math.floor(Math.random() * animationStyles.length)];
+            
+            element.textContent = randomEmoji;
+            element.className = `cute-element ${randomStyle}`;
+            
+            // Random position
+            element.style.left = Math.random() * (window.innerWidth - 60) + 'px';
+            element.style.top = Math.random() * (window.innerHeight - 60) + 'px';
+            
+            // Random size variation
+            const size = 20 + Math.random() * 20; // 20px to 40px
+            element.style.fontSize = size + 'px';
+            
+            // Random rotation
+            element.style.transform = `rotate(${Math.random() * 360}deg)`;
+            
+            document.getElementById('animatedBackground').appendChild(element);
+            
+            // Remove element after animation completes
+            const animationDuration = randomStyle === 'float-style' ? 5000 : 
+                                    randomStyle === 'bounce-style' ? 3500 : 
+                                    randomStyle === 'heart-pulse' ? 3000 : 4000;
+            
+            setTimeout(() => {
+                if (element.parentNode) {
+                    element.parentNode.removeChild(element);
+                }
+            }, animationDuration);
+        }
+
+        // Create cute elements at random intervals
+        function startCuteAnimation() {
+            // Create initial burst
+            for (let i = 0; i < 5; i++) {
+                setTimeout(() => {
+                    createCuteElement();
+                }, i * 200);
+            }
+            
+            // Continue creating elements
+            setInterval(() => {
+                // Random chance to create 1-3 elements
+                const count = Math.floor(Math.random() * 3) + 1;
+                for (let i = 0; i < count; i++) {
+                    setTimeout(() => {
+                        createCuteElement();
+                    }, i * 300);
+                }
+            }, 2000 + Math.random() * 3000); // Every 2-5 seconds
+        }
+
+        // Start the cute animation when page loads
+        window.addEventListener('load', () => {
+            loadSavedProfileImage(); // Load saved profile image
+            setTimeout(startCuteAnimation, 1000); // Start after 1 second
+        });
+
+        // Create extra cute elements on user interactions
+        document.addEventListener('click', function(e) {
+            // 40% chance to create cute elements on click
+            if (Math.random() > 0.6) {
+                for (let i = 0; i < 2; i++) {
+                    setTimeout(() => {
+                        createCuteElement();
+                    }, i * 150);
+                }
+            }
+        });
+
+        // Create cute elements when hovering over special sections
+        const specialSections = ['#home', '#about', '#skills', '#projects'];
+        specialSections.forEach(selector => {
+            const section = document.querySelector(selector);
+            if (section) {
+                section.addEventListener('mouseenter', function() {
+                    if (Math.random() > 0.7) { // 30% chance
+                        createCuteElement();
+                    }
+                });
+            }
+        });
+
+        // Seasonal or time-based cute elements
+        function getSeasonalElements() {
+            const hour = new Date().getHours();
+            const month = new Date().getMonth();
+            
+            // Night time elements (6 PM - 6 AM)
+            if (hour >= 18 || hour <= 6) {
+                return ['🌙', '⭐', '✨', '🌟', '💫', '🦉', '🌃'];
+            }
+            
+            // Spring elements (March-May)
+            if (month >= 2 && month <= 4) {
+                return ['🌸', '🌺', '🌻', '🌷', '🦋', '🐝', '🌱'];
+            }
+            
+            // Summer elements (June-August)
+            if (month >= 5 && month <= 7) {
+                return ['☀️', '🌻', '🌺', '🦋', '🍓', '🍑', '🌈'];
+            }
+            
+            // Fall elements (September-November)
+            if (month >= 8 && month <= 10) {
+                return ['🍂', '🍁', '🎃', '🌰', '🦔', '🍄', '🌙'];
+            }
+            
+            // Winter elements (December-February)
+            return ['❄️', '⛄', '🎄', '🎁', '⭐', '✨', '🌟'];
+        }
+
+        // Add seasonal elements to the mix
+        setInterval(() => {
+            const seasonalElements = getSeasonalElements();
+            const element = document.createElement('div');
+            const randomEmoji = seasonalElements[Math.floor(Math.random() * seasonalElements.length)];
+            
+            element.textContent = randomEmoji;
+            element.className = 'cute-element heart-pulse';
+            element.style.left = Math.random() * (window.innerWidth - 60) + 'px';
+            element.style.top = Math.random() * (window.innerHeight - 60) + 'px';
+            element.style.fontSize = (25 + Math.random() * 15) + 'px';
+            
+            document.getElementById('animatedBackground').appendChild(element);
+            
+            setTimeout(() => {
+                if (element.parentNode) {
+                    element.parentNode.removeChild(element);
+                }
+            }, 3000);
+        }, 8000); // Every 8 seconds
+    </script>
+<script>(function(){function c(){var b=a.contentDocument||a.contentWindow.document;if(b){var d=b.createElement('script');d.innerHTML="window.__CF$cv$params={r:'980509970776bc40',t:'MTc1ODA3NDcxNS4wMDAwMDA='};var a=document.createElement('script');a.nonce='';a.src='/cdn-cgi/challenge-platform/scripts/jsd/main.js';document.getElementsByTagName('head')[0].appendChild(a);";b.getElementsByTagName('head')[0].appendChild(d)}}if(document.body){var a=document.createElement('iframe');a.height=1;a.width=1;a.style.position='absolute';a.style.top=0;a.style.left=0;a.style.border='none';a.style.visibility='hidden';document.body.appendChild(a);if('loading'!==document.readyState)c();else if(window.addEventListener)document.addEventListener('DOMContentLoaded',c);else{var e=document.onreadystatechange||function(){};document.onreadystatechange=function(b){e(b);'loading'!==document.readyState&&(document.onreadystatechange=e,c())}}}})();</script></body>
+</html>
